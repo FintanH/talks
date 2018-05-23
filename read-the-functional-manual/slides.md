@@ -14,13 +14,13 @@
 
 # This Guy
 
-![It me](me.png)
+![It me](images/me.png)
 
 # This Guy
 
 * Studied Computer Science in Trinity College, Dublin
 
-![Trinity College, Dublin](campanile.jpg)
+![Trinity College, Dublin](images/campanile.jpg)
 
 # This Guy
 
@@ -30,13 +30,11 @@
 
 * Began to see the light reading Haskell Programming From First Principles
 
-![Haskell]()
-
 # This Guy
 
 * Three years of Python in LogoGrab, sneaking some Haskell in after a while
 
-![LogoGrab]()
+![LogoGrab](images/logograb.png)
 
 # This Guy
 
@@ -44,7 +42,7 @@
 
 * But the learning journey continues
 
-![Formation]()
+![Formation](images/F-logo-hex.png)
 
 # Functionally Dependent Documentation
 
@@ -130,6 +128,8 @@
 * Documentation through usage and tutorials
 
 * Documentation through blog posts (similar to tutorials but more free form)
+
+
 
 # Types as Documentation
 
@@ -300,13 +300,37 @@ newtype DB = { runDB :: etc. }
 getUser :: Username -> Password -> DB User
 ```
 
+# Real World Confusion
+
+* I came across an instance of this in the wild
+
+* No `newtype` and no documentation on parameters
+
+![dhall `exprFromText`](images/dhall_exprFromText.png)
+
+* What is this `String`?
+
+* Rumaging in the source code I eventually found
+
+![Megaparsec `parse`](images/Text_Megaparsec_parse.png)
+
+
+
 # Names and Descriptions
 
-* You've gotten to the point of having this abstract thing in your head (maybe on paper)
+![What's wrong here?](images/bad_docs.png)
 
-* Next step is you're going to define it for realz
+# Be Nice to Your Users
 
-* Here we come to naming and describing things
+* We have written our functions
+
+* Even come up with some name for them
+
+* We _should_ describe what they do
+
+* Even if it is a short description
+
+* Let's talk about naming first
 
 # Domains, Domains, Domains
 
@@ -335,9 +359,9 @@ deposit :: Money -> Account
 # Example: Algebra
 
 ```haskell
-
 data Vector n a
 data Matrix n m a
+data Tensor [dimensions]
 
 multMat :: Num a
         => Matrix n m a
@@ -373,12 +397,219 @@ dotProduct :: Num a => Vector n a -> Vector n a -> a
 
   * Do: Write intermediate comments for smaller parts
 
+* We want to help the user when they search the documentation
+
+* We also want to guide them when they look at source code
+
+* Remeber that user could **also be you!**
+
 # Help the n00bs
 
 * When describing things assume the least amount of knowledge as possible
 
-* This helps _you_ by making you understand what you're writing in its simplest terms
+* This helps _you_ by writing in the simplest terms
 
-* This helps _others_ by helping them understand when coming to your library
+* This helps _others_ by helping them understand quicker
 
 * Never use the words "obvious" or "obviously"
+
+# Let's Go Fishing
+
+* Problem of naming and description shown
+
+* How can we add more documentation?
+
+* So let's going fishing for some Haddock
+
+![Haddock](images/haddock.png)
+
+# What is Haddock?
+
+* Ubiquitous tool for documenting Haskell code
+
+* We have already seen it at work in my slides
+
+* Mark up language that goes inside your source code
+
+* Comes out as beautiful HTML
+
+# Calling the Haddock Command
+
+* There is Haddock command line tool
+
+* Personally, as a Stack user, I use `stack haddock`
+
+```bash
+# Generating the Haddock output
+stack haddock my-lib
+```
+
+* Will output something like:
+
+```bash
+# Bunch of stuff
+~/my-lib/.stack-work/install/os/lts/8.2.2/doc/index.html
+# More stuff
+```
+
+* For more options:
+
+```bash
+stack haddock --help
+```
+
+# Pipey and Pointy
+
+* Two of our best friends writing Haddock
+
+  * Pipey – `-- |`
+
+  * Pointy – `-- ^`
+
+* These two will start your documentation
+
+# Tip-Top Functions
+
+* We can document our top level functions
+
+* Simply add our aforementioned friends
+
+* Let's look at examples
+
+# Example: Pipey
+```haskell
+-- | The 'capitalise' function capitalises on your losses.
+--   But it also capitalises a word.
+capitalise :: String -> String
+capitalise []       = []
+capitalise (c : cs) = toUpper c : cs
+```
+
+# Example: Pointy
+```haskell
+capitalise :: String -> String
+-- ^ The 'capitalise' function capitalises on your losses.
+--   But it also capitalises a word.
+capitalise []       = []
+capitalise (c : cs) = toUpper c : cs
+```
+
+# Example: Multiline Pipey
+```haskell
+{- | The 'capitalise' function capitalises on your losses.
+     But it also capitalises a word.
+-}
+capitalise :: String -> String
+capitalise []       = []
+capitalise (c : cs) = toUpper c : cs
+```
+
+# Classifying Typeclasses
+
+* We can even document our typeclass functions
+
+* This is done in the same way as we did with top level functions
+
+# Example: Documenting Typeclasses
+```haskell
+-- | Typeclass for 'encrypt'ing
+--   and 'decrpyt'ing to/from 'Secret'
+class Secret a where
+    -- | This 'encrypt's your secret :o
+    encrypt :: a -> Secret
+    -- | This 'decrypt's your secret :D
+    decrypt :: Secret -> a
+```
+
+# Sum-times We Document
+
+* Our friends come to the rescue again
+
+* We can document our Sum Types
+
+# Example: Sum Amount of Documentation
+```haskell
+data Who a b
+  -- | This is 'Me'
+  = Me a
+  -- | And this is 'You'
+  | You b
+```
+
+```haskell
+data Who a b
+  = Me a  -- ^ This is 'Me'
+  | You b -- ^ And this is 'You'
+```
+
+# The Product of Our Work
+
+* This is sound like a broken record at this stage
+
+* But, we can document our Product Types as well
+
+# Example: Product-ive Documentation
+```haskell
+data Two a b = Two
+  { -- | 'one' is the lonliest number
+    one  :: a
+    -- | 'two' is the second lonliest number
+  , two :: b
+  }
+```
+
+```haskell
+data Two a b = Two
+  { one  :: a -- ^ 'one' is the lonliest number
+  , two  :: b -- ^ 'two' is the second lonliest number
+  }
+```
+
+# Arguing the Pointy
+
+* Last time, I swear
+
+* We can document our function arguments too!
+
+# Argumentative Documentation
+```haskell
+-- | A function to say 'hello'
+hello :: String -- ^ The thing you want to say hello to
+      -> String
+```
+
+# On Your Markups, Get Set, Document!
+
+# Paragraphs
+
+# Code Blocks
+
+# Examples
+
+# Properties
+
+# Hyperlinking
+
+# And So Much More!
+
+# Real Time Document Fixing
+
+* Going to fix some documentation
+
+* Make a PR to Dhall
+
+* This means we will see:
+
+  * The real use of Haddock
+
+  * How to make a PR
+
+* So let's go!
+
+
+
+# Documenting via Usage
+
+
+
+# Documenting via Tutorials
