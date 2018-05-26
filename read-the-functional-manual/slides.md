@@ -580,17 +580,141 @@ hello :: String -- ^ The thing you want to say hello to
 
 # On Your Markups, Get Set, Document!
 
+* After this we have a bunch of other markup options
+
+* Paragraphs
+
+* Code Blocks
+
+* Examples
+
+* The list goes on, so let's take a look
+
 # Paragraphs
+
+* Separate lines with one or more new lines
+
+```haskell
+-- | First paragraph
+--
+--   Next paragraph
+```
 
 # Code Blocks
 
+* There are two ways to write codeblocks
+
+  * Bird tracks: `> ...`
+
+  * Crazy eyes: `@ ... @`
+
+```haskell
+-- | The 'capitalise' function capitalises on your losses.
+--   But it also capitalises a word.
+--
+-- > capitalise "world" == "World"
+```
+
+```haskell
+-- | The 'capitalise' function capitalises on your losses.
+--   But it also capitalises a word.
+--
+-- @
+-- capitalise \"hello\" == \"Hello\"
+-- @
+```
+
 # Examples
+
+* We can inline examples to show off our code
+
+```haskell
+>>> capitalise "fintan"
+"Fintan"
+```
 
 # Properties
 
+* Now this is cool, we can declare our properties in documentation too!
+
+```haskell
+-- Preserves the length of the input
+--
+-- prop> length xs = length (capitalise xs)
+```
+
+* We can use `doctest` and `doctest-discover` for verification
+
 # Hyperlinking
 
+* Linking all your documentation
+
+* Probably one of my favourite features
+
+* To link definitions we use `'foo'`
+
+* To link modules we use `"Foo"`
+
+```haskell
+-- | 'capitalise' specialised to 'T.Text' using the
+--   'first' function from "Data.Bifunctor".
+capitaliseT :: T.Text -> T.Text
+capitaliseT = maybe T.empty
+                    (uncurry T.cons . first toUpper)
+            . T.uncons
+```
+
+# Headers
+
+* We can section our documentation with headers
+
+* The top level header is denoted with `-- *`
+
+* Add more `*`s for each subsection
+
+# Headers – Export
+
+* It is popular to do this in the export of your module
+
+```haskell
+module Foo (
+  -- * Classes
+  , C(..)
+  -- * Types
+  -- ** A data type
+  , T
+  -- * Some functions
+  , f
+  , g
+  ) where
+```
+
+# Headers - Inline
+* But you can also inline
+
+```haskell
+module Foo where
+
+-- * This heading will now appear before foo.
+
+-- | Documentation for 'foo'.
+foo :: Integer
+foo = 5
+```
+
 # And So Much More!
+
+* There's so much more to Haddock
+
+* All usage can be found at:
+
+  * http://haskell-haddock.readthedocs.io/en/latest/index.html
+
+* There's a repo for looking at examples and a blog post to accompany:
+
+  * https://github.com/FintanH/haddock-tutorial
+
+  * https://medium.com/@fintan.halpenny/fishy-documentation-c1b47f43bf62
 
 # Real Time Document Fixing
 
