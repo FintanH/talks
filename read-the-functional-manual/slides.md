@@ -730,9 +730,15 @@ foo = 5
 
 * So let's go!
 
+# Reap the Rewards
+
+![Incentive!](images/matt_tweet.png)
+
 
 
 # Documenting via Usage
+
+
 
 
 
