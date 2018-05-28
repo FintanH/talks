@@ -738,8 +738,42 @@ foo = 5
 
 # Documenting via Usage
 
+* ![What's wrong here?](images/bad_usage.png)
 
+# Usage for the Users
 
+* When we write out libraries we are the first users
 
+* We know how it works (hopefully)
+
+* Not conveying this is selfish
+
+# TODO: Title for this slide
+
+* As good Haskellerz we organise our libraries using Types
+
+* We can thus describe the usage through types
+
+* The Gabriel Gonzalez Method:
+
+  * How to _construct_ data of your type
+  
+  * How to _transform_ data of your type
+  
+  * How to _consume_ data of your type
+
+# Case Study: Turtle
+
+# Case Study: HMatrix
 
 # Documenting via Tutorials
+
+* Usage++
+
+* Give the reader exercises
+
+# Case Study: Conduit
+
+# Final Remarks
+
+* **Questions?**
