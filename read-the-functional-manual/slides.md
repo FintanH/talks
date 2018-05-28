@@ -125,9 +125,7 @@
 
 * Documentation through naming and descriptions
 
-* Documentation through usage and tutorials
-
-* Documentation through blog posts (similar to tutorials but more free form)
+* Documentation through usage/tutorials/blog posts
 
 
 
@@ -356,7 +354,7 @@ withdraw :: Account -> Maybe Money
 deposit :: Money -> Account
 ```
 
-# Example: Algebra
+# Example: Linear Algebra
 
 ```haskell
 data Vector n a
@@ -381,7 +379,7 @@ dotProduct :: Num a => Vector n a -> Vector n a -> a
 
   * Terrafomo – a Terraform library
 
-  * Esqueleto – a SQL EDSL
+  * Esqueleto – an SQL EDSL
 
   * Weeder – tool for removing unused pieces of your code base
 
@@ -415,9 +413,9 @@ dotProduct :: Num a => Vector n a -> Vector n a -> a
 
 # Let's Go Fishing
 
-* Problem of naming and description shown
+* So we know that we should name and describe things
 
-* How can we add more documentation?
+* How can we add these as documentation?
 
 * So let's going fishing for some Haddock
 
@@ -427,15 +425,13 @@ dotProduct :: Num a => Vector n a -> Vector n a -> a
 
 * Ubiquitous tool for documenting Haskell code
 
-* We have already seen it at work in my slides
+* We have already seen its beautiful HTML
 
 * Mark up language that goes inside your source code
 
-* Comes out as beautiful HTML
-
 # Calling the Haddock Command
 
-* There is Haddock command line tool
+* There is a Haddock command line tool
 
 * Personally, as a Stack user, I use `stack haddock`
 
@@ -746,9 +742,9 @@ foo = 5
 
 * We know how it works (hopefully)
 
-* Not conveying this is selfish
+* So we should convey this
 
-# TODO: Title for this slide
+# Gabriel Gonzalez Method
 
 * As good Haskellerz we organise our libraries using Types
 
@@ -756,15 +752,19 @@ foo = 5
 
 * The Gabriel Gonzalez Method:
 
-  * How to _construct_ data of your type
-  
+  * How to _produce_ data of your type
+
   * How to _transform_ data of your type
-  
+
   * How to _consume_ data of your type
 
 # Case Study: Turtle
 
+* https://hackage.haskell.org/package/turtle-1.5.8/docs/Turtle-Prelude.html
+
 # Case Study: HMatrix
+
+* http://dis.um.es/~alberto/hmatrix/hmatrixtut.html
 
 # Documenting via Tutorials
 
@@ -774,6 +774,12 @@ foo = 5
 
 # Case Study: Conduit
 
+* https://github.com/snoyberg/conduit
+
 # Final Remarks
+
+* So if we lack so much documentation, what will we do about it?
+
+* Go out there and document! (And Matt will pay us)
 
 * **Questions?**
