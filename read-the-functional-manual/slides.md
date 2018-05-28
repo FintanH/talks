@@ -540,7 +540,7 @@ data Who a b
 
 # The Product of Our Work
 
-* This is sound like a broken record at this stage
+* This might sound like a broken record at this stage
 
 * But, we can document our Product Types as well
 
