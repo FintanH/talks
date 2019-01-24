@@ -3,8 +3,8 @@
 
 In this talk we will introduce ourselves to the configuration language, Dhall.
 We will discuss the importance of Dhall in the configuration language space. It chooses
-a unique set of features such as being total, safe, strong and statically types, and strongly
-normalising. We will examine of this differs to its cousins JSON and YAML and what advantages it
+a unique set of features such as being total, safe, strong & statically typed, and strongly
+normalising. We will examine how Dhall differs from its cousins JSON and YAML and what advantages it
 provides over these configuration languages.
 
 We will get a complete understanding of the language by examining these features, examining
