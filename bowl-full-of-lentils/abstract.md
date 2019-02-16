@@ -1,30 +1,30 @@
-
 # Bowl Full of Lentils
 
+Copy-paste is a ubiquitous tool in a programmer's box of shortcuts. Sometimes we just
+don't care that we're repeating ourselves because we need this thing fast. This is even
+more so when it comes to configurations. We are all guilty of taking an existing configuration
+file, copying its content and changing a few values. JSON and YAML do not have enough expressive
+power to stop us from doing this. But what if I told you there was something that does have this
+power? What if I told you we could DRY up our configuration files and practice functional programming
+at the same time? What will you choose the red pill or the blue pill?
+
 In this talk we will introduce ourselves to the configuration language, Dhall.
-We will discuss the importance of Dhall in the configuration language space. It chooses
+We will discuss the importance of Dhall in the configuration language space. Dhall chooses
 a unique set of features such as being total, safe, strong & statically typed, and strongly
-normalising. We will examine how Dhall differs from its cousins JSON and YAML and what advantages it
+normalising, giving us the expressive power that we deserve in our configuration language.
+We will examine how Dhall differs from its cousins JSON and YAML and what advantages it
 provides over these configuration languages.
 
-We will get a complete understanding of the language by examining these features, examining
-them under the lens of its native types and functions, from Text and Naturals to Records and Unions types.
-We will showcase the power and safety by looking at the use of functions and types to define some simple
-configurations.
+We will get a complete understanding of the language by examining its features, examining
+them under the lens of its native types and functions, from Text and Naturals to Records and Unions.
+With a grounding in the types that we can work with in Dhall, we will go through a configuration file that
+is geared for tuning a (mock) machine learning model, seeing how painful it is to copy and paste these
+in JSON, and making it all-so-much-better by using Dhall instead.
 
-Once we have a good understanding of the language itself we will will introduce the
-dhall-bhat library. The library encompasses many of the familiar concepts functional
-programmers encounter, such as Functors, Applicatives, and Monads, as well as common
-types we use such as Either, State, and Reader.
+We will alleviate the pain of configurations even more by introducing the dhall-bhat library. We will
+a tour of the library and get familiar with the functional concepts it has to offer. We will look at
+such concepts as Functors, Applicatives, and Monad. We will also look paired at types that we commonly come across,
+such as Either, State, and Reader. We will then look through the previous example of a machine learning configuration
+and applying some functional techniques to get an even DRYer implementation.
 
-With a basic understanding of the functional programming library we will discuss a normalisation
-problem that occurs with Dhall's merge function being nested on Union types. We will then show
-how this nesting can be alleviated by utilising Yoneda to normalise expressions reducing the total
-expression size input.
-
-We will finish by introducing dada, a Dhall library that defines and ecosystem for recursion schemes.
-Without going into to much detail around recursion schemes we will discuss how combining dhall-bhat
-and dada we can write a domain specific configuration language. We will examine how this configuration
-language acts a pure definition of a configuration that can be interpreted into the Haskell runtime
-system to be executed.
-
+Attendees are recommended to have some familiarity with the functional concepts mentioned above, but are not required.
