@@ -4,7 +4,7 @@ Copy-paste is a ubiquitous tool in a programmer's box of shortcuts. Sometimes we
 don't care that we're repeating ourselves because we need this thing fast. This is even
 more so when it comes to configurations. We are all guilty of taking an existing configuration
 file, copying its content and changing a few values. JSON and YAML do not have enough expressive
-power to stop us from doing this. But what if I told you there was something that does have this
+power to avoid this effectively. But what if I told you there was something that does have this
 power? What if I told you we could DRY up our configuration files and practice functional programming
 at the same time? What will you choose the red pill or the blue pill?
 
@@ -22,9 +22,9 @@ is geared for tuning a (mock) machine learning model, seeing how painful it is t
 in JSON, and making it all-so-much-better by using Dhall instead.
 
 We will alleviate the pain of configurations even more by introducing the dhall-bhat library. We will
-a tour of the library and get familiar with the functional concepts it has to offer. We will look at
-such concepts as Functors, Applicatives, and Monad. We will also look paired at types that we commonly come across,
+take a tour of the library and get familiar with the functional concepts it has to offer. We will look at
+such concepts as Functors, Applicatives, and Monads. We will also look at types that we commonly come across,
 such as Either, State, and Reader. We will then look through the previous example of a machine learning configuration
-and applying some functional techniques to get an even DRYer implementation.
+and apply some functional techniques to get an even DRYer implementation.
 
 Attendees are recommended to have some familiarity with the functional concepts mentioned above, but are not required.
