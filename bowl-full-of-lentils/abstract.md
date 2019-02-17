@@ -15,10 +15,9 @@ normalising, giving us the expressive power that we deserve in our configuration
 We will examine how Dhall differs from its cousins JSON and YAML and what advantages it
 provides over these configuration languages.
 
-We will get a complete understanding of the language by examining its features, examining
-them under the lens of its native types and functions, from Text and Naturals to Records and Unions.
-With a grounding in the types that we can work with in Dhall, we will go through a configuration file that
-is geared for tuning a (mock) machine learning model, seeing how painful it is to copy and paste these
+We will get a complete understanding of the language by examining its features under the lens of its native types and functions,
+from Text and Naturals to Records and Unions. With a grounding in the types that we can work with in Dhall, we will go through
+a configuration file that is geared for tuning a (mock) machine learning model, seeing how painful it is to copy and paste these
 in JSON, and making it all-so-much-better by using Dhall instead.
 
 We will alleviate the pain of configurations even more by introducing the dhall-bhat library. We will
