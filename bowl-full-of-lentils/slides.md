@@ -5,7 +5,13 @@ A quick explanation of who I am, who I work for
 
 # Dhall
 
-Give a brief background on Dhall
+* https://dhall-lang.org/
+
+* Dhall - The non-repetitive alternative to YAML
+
+* You can think of Dhall as: JSON + functions + types + imports
+
+* Not Turing-complete
 
 # Dhall - Features
 
@@ -29,3 +35,12 @@ for config in `dhall <<< "./learner [input1, input2, input3, input4]"`
 end
 ```
 
+# More Tasty Meals
+
+* https://functional.works-hub.com/learn/bowl-full-of-lentils-fcbf3
+
+* https://functional.works-hub.com/learn/yo-yoneda-a2965
+
+* https://kowainik.github.io/posts/2018-09-09-dhall-to-hlint.html
+
+* https://github.com/dhall-lang
