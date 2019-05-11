@@ -15,13 +15,180 @@ A quick explanation of who I am, who I work for
 
 # Dhall - Features
 
-List the primary dhall features that we will discuss
+* Built-in types
 
-TODO: Go to blog post to take examples of language features. Make sure they're up to date
+* Functions
 
-# Dhall - Feature 1
+* Records
 
-# Dhall - Feature 2 etc.
+* Unions
+
+
+# Bool
+
+```bash
+$ dhall type <<< "True"
+Bool
+```
+
+```bash
+$ dhall <<< "True && False"
+False
+```
+
+```bash
+$ dhall <<< "True && True"
+True
+```
+
+```bash
+$ dhall <<< "True || False"
+True
+```
+
+```bash
+$ dhall <<< "False || False"
+False
+```
+
+
+# Natural
+
+```bash
+$ dhall type <<< "0"
+Natural
+```
+
+```bash
+$ dhall <<< "1 + 1"
+2
+```
+
+```bash
+$ dhall <<< "1 + 0"
+1
+```
+
+```bash
+$ dhall <<< "1 * 1"
+1
+```
+
+```bash
+$ dhall <<< "1 * 0"
+0
+```
+
+
+# Integer
+
+```bash
+$ dhall type <<< "-1"
+Integer
+```
+
+```bash
+$ dhall <<< "-1"
+-1
+```
+
+```bash
+$ dhall <<< "+1"
++1
+```
+
+```bash
+$ dhall <<< -1 + -2
+Use "dhall --explain" for detailed errors
+
+Error: <+> only works on <Natural>s
+
+-1 + -2
+
+(stdin):1:1
+```
+
+
+# Double
+
+```bash
+$ dhall type <<< "3.14"
+Double
+```
+
+```bash
+$ dhall <<< "3.14"
+3.14
+```
+
+```bash
+$ dhall <<< "Infinity"
+Infinity
+```
+
+```bash
+$ dhall <<< "-Infinity"
+-Infinity
+```
+
+```bash
+$ dhall <<< "3.14 * (3.0 * 3.0)
+Use "dhall --explain" for detailed errors
+
+Error: <*> only works on <Natural>s
+
+3.14 * (3.0 * 3.0)
+```
+
+(stdin):1:1
+
+# Text
+
+```bash
+$ dhall type <<< '"Hello, World!"'
+Text
+```
+
+```bash
+$ dhall <<< '"I <3 Dhall"'
+"I <3 Dhall"
+```
+
+```bash
+$ dhall <<< '"I" ++ " <3 " ++ "NYC"'
+"I <3 NYC"
+```
+
+```bash
+$ dhall
+''
+    #!/bin/bash
+
+    echo "Hi!"
+''
+<Ctrl-D>
+''
+    #!/bin/bash
+
+    echo "Hi!"
+''
+```
+
+# List
+
+# Optional
+
+# Unit
+
+# Records
+
+# Unions
+
+# Let
+
+# Functions
+
+# Imports
 
 # Use Case - Machine Learning Configuration
 
