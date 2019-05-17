@@ -142,6 +142,7 @@ Error: <*> only works on <Natural>s
 
 (stdin):1:1
 
+
 # Text
 
 ```bash
@@ -174,13 +175,98 @@ $ dhall
 ''
 ```
 
+
 # List
+
+```bash
+$ dhall type <<< "[1, 2, 3]"
+List Natural
+```
+
+```bash
+$ dhall <<< "[1, 2, 3] # [4, 5, 6]
+[ 1, 2, 3, 4, 5, 6 ]
+```
+
+```bash
+$ dhall <<< "List/fold Bool [True, False, True] Bool (\(x : Bool) -> \(y : Bool) -> x && y) True"
+False
+```
+
+```bash
+$ dhall <<< "List/length Natural [1, 2, 3]"
+3
+```
+
 
 # Optional
 
+```bash
+$ dhall type <<< "None Natural"
+Optional Natural
+```
+
+```bash
+$ dhall type <<< "Some 1"
+Optional Natural
+```
+
+```bash
+$ dhall <<< 'Optional/fold Text (Some "ABC") Text (\(t : Text) -> t) "Uhoh"'
+"ABC"
+```
+
+```bash
+$ dhall <<< 'Optional/fold Text (None Text) Text (\(t : Text) -> t) "Uhoh"'
+"Uhoh"
+```
+
+
 # Unit
 
+```bash
+$ dhall <<< "{=}"
+{}
+```
+
+```bash
+$ dhall <<< "{=}
+{=}
+```
+
+
 # Records
+
+```bash
+dhall type <<< "{ name : Text, age : Natural, email : Text }"
+Type
+```
+
+```bash
+dhall <<< "{ name : Text, age : Natural, email : Text }"
+{ age : Natural, email : Text, name : Text }
+```
+
+```bash
+dhall type <<< '{ name = "Fintan", age = 26, email = "finto@haps.com" }'
+{ age : Natural, email : Text, name : Text }
+```
+
+```bash
+dhall <<< '{ name = "Fintan", age = 26, email = "finto@haps.com" }'
+{ age = 26, email = "finto@haps.com", name = "Fintan" }
+```
+
+```bash
+dhall <<< '{ name = "Fintan", age = 26, email = "finto@haps.com" } : { name : Text, age : Natural }'
+Error: Expression doesn't match annotation
+
+{ + email : …
+, …
+}
+
+{ name = "Fintan", age = 26, email = "finto@haps.com" } : { name : Text, age : Natural }
+```
 
 # Unions
 
