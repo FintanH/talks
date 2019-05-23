@@ -3,6 +3,7 @@
 
 A quick explanation of who I am, who I work for
 
+
 # Dhall
 
 * https://dhall-lang.org/
@@ -13,15 +14,18 @@ A quick explanation of who I am, who I work for
 
 * Not Turing-complete
 
+
 # Dhall - Features
 
 * Built-in types
 
-* Functions
-
 * Records
 
 * Unions
+
+* Functions
+
+* Let/Imports
 
 
 # Bool
@@ -268,13 +272,108 @@ Error: Expression doesn't match annotation
 { name = "Fintan", age = 26, email = "finto@haps.com" } : { name : Text, age : Natural }
 ```
 
+```bash
+dhall <<< '{ name = "Fintan", age = 26 }.age'
+26
+```
+
+```bash
+dhall <<< '{ name = "Fintan", age = 26 }.{ age, name }'
+{ age = 26, name = "Fintan" }
+```
+
 # Unions
 
-# Let
+```bash
+$ dhall type <<< "
+< Monday
+| Tuesday
+| Wednesday
+| Thursday
+| Friday
+>
+"
+Type
+```
+
+```bash
+$ dhall <<< "
+< Monday
+| Tuesday
+| Wednesday
+| Thursday
+| Friday
+>
+"
+< Friday | Monday | Thursday | Tuesday | Wednesday >
+```
+
+```bash
+$ dhall <<< "
+< Monday
+| Tuesday
+| Wednesday
+| Thursday
+| Friday
+>.Monday
+"
+< Friday | Monday | Thursday | Tuesday | Wednesday >.Monday
+```
+
+```bash
+$ dhall <<< "
+merge
+{ Monday = True
+, Tuesday = False
+, Wednesday = False
+, Thursday = False
+, Friday = False
+} < Monday | Tuesday | Wednesday | Thursday | Friday >.Monday
+"
+True
+```
+
 
 # Functions
 
-# Imports
+```bash
+$ dhall type <<< "\(x : Natural) -> x + 1"
+∀(x : Natural) → Natural
+```
+
+```bash
+$ dhall <<< "\(x : Natural) -> x + 1"
+λ(x : Natural) → x + 1
+```
+
+```bash
+$ dhall <<< "(\(x : Natural) -> x + 1) 41"
+42
+```
+
+```bash
+$ dhall <<< '(\(a : Type) -> \(b : Type) -> \(x : a) -> \(y : b) -> x) Text Natural "Ignored!" 17'
+"Ignored!"
+```
+
+
+# Let/Imports
+
+```bash
+$ dhall <<< 'let identity = \(a : Type) -> \(x : a) -> x in identity Text "It me!"'
+"It me!"
+```
+
+```bash
+$ dhall <<< "let enumerate = https://raw.githubusercontent.com/dhall-lang/dhall-lang/master/Prelude/Natural/enumerate in enumerate 10"
+[ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 ]
+```
+
+```bash
+$ dhall <<< "let f = ../identity in f Natural 42"
+42
+```
+
 
 # Use Case - Machine Learning Configuration
 
