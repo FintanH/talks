@@ -142,9 +142,9 @@ Use "dhall --explain" for detailed errors
 Error: <*> only works on <Natural>s
 
 3.14 * (3.0 * 3.0)
-```
 
 (stdin):1:1
+```
 
 
 # Text
@@ -163,6 +163,8 @@ $ dhall <<< '"I <3 Dhall"'
 $ dhall <<< '"I" ++ " <3 " ++ "NYC"'
 "I <3 NYC"
 ```
+
+# Text
 
 ```bash
 $ dhall
@@ -193,7 +195,15 @@ $ dhall <<< "[1, 2, 3] # [4, 5, 6]
 ```
 
 ```bash
-$ dhall <<< "List/fold Bool [True, False, True] Bool (\(x : Bool) -> \(y : Bool) -> x && y) True"
+$ dhall <<< "
+List/fold
+  Bool
+  [True, False, True]
+  Bool
+  (\(x : Bool) -> \(y : Bool) -> x && y)
+  True
+"
+"
 False
 ```
 
@@ -215,13 +225,31 @@ $ dhall type <<< "Some 1"
 Optional Natural
 ```
 
+# Optional
+
 ```bash
-$ dhall <<< 'Optional/fold Text (Some "ABC") Text (\(t : Text) -> t) "Uhoh"'
+$ dhall <<< '
+Optional/fold
+  Text
+  (Some "ABC")
+  Text
+  (\(t : Text) -> t)
+  "Uhoh"
+'
 "ABC"
 ```
 
+# Optional
+
 ```bash
-$ dhall <<< 'Optional/fold Text (None Text) Text (\(t : Text) -> t) "Uhoh"'
+$ dhall <<< '
+Optional/fold
+  Text
+  (None Text)
+  Text
+  (\(t : Text) -> t)
+  "Uhoh"
+'
 "Uhoh"
 ```
 
@@ -242,34 +270,44 @@ $ dhall <<< "{=}
 # Records
 
 ```bash
-dhall type <<< "{ name : Text, age : Natural, email : Text }"
+dhall type <<< "
+{ name : Text, age : Natural, email : Text }
+"
 Type
 ```
 
 ```bash
-dhall <<< "{ name : Text, age : Natural, email : Text }"
+dhall <<< "
+{ name : Text, age : Natural, email : Text }
+"
 { age : Natural, email : Text, name : Text }
 ```
 
 ```bash
-dhall type <<< '{ name = "Fintan", age = 26, email = "finto@haps.com" }'
+dhall type <<< '
+{ name = "Fintan", age = 26, email = "finto@haps.com" }
+'
 { age : Natural, email : Text, name : Text }
 ```
 
 ```bash
-dhall <<< '{ name = "Fintan", age = 26, email = "finto@haps.com" }'
+dhall <<< '
+{ name = "Fintan", age = 26, email = "finto@haps.com" }
+'
 { age = 26, email = "finto@haps.com", name = "Fintan" }
 ```
 
 ```bash
-dhall <<< '{ name = "Fintan", age = 26, email = "finto@haps.com" } : { name : Text, age : Natural }'
+dhall <<< '
+{ name = "Fintan" } : { name : Text, age : Natural }
+'
 Error: Expression doesn't match annotation
 
-{ + email : …
+{ + age : …
 , …
 }
 
-{ name = "Fintan", age = 26, email = "finto@haps.com" } : { name : Text, age : Natural }
+{ name = "Fintan" } : { name : Text, age : Natural }
 ```
 
 ```bash
