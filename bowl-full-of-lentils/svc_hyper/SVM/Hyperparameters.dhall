@@ -1,0 +1,1 @@
+{ gamma : Double, C : Double }
