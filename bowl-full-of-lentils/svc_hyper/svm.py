@@ -4,25 +4,36 @@ from sklearn import svm, datasets
 from sklearn.model_selection import train_test_split
 import sys
 
-def train_and_predict(X_train, y_train, X_test, y_test, gamma, C):
-    svc = svm.SVC(kernel="rbf", gamma=gamma, C=C).fit(X_train, y_train)
-
-    print("GAMMA=%f, C=%f" % (gamma, C))
+def train_and_predict(kernel, X_train, y_train, X_test, y_test, gamma, C):
+    svc = svm.SVC(kernel=kernel, gamma=gamma, C=C).fit(X_train, y_train)
     predictions = svc.predict(X_test) == y_test
-    print("PREDICTION=%f\n\n" % (sum(predictions) / len(predictions)))
+    return (gamma, C, sum(predictions) / len(predictions))
 
 def main():
-    iris = datasets.load_iris()
-    X = iris.data[:, :2]
-    y = iris.target
-    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.33, random_state=42)
+    trainer_file = sys.argv[1]
+    params_file = sys.argv[2]
 
-    file_name = sys.argv[1]
-    print("Loading: %s" % file_name)
-    with open(file_name, "r") as fp:
+    print("Loading trainer: %s" % trainer_file)
+    with open(trainer_file, "r") as fp:
+        trainer = json.load(fp=fp)
+
+    print("Loading params: %s" % params_file)
+    with open(params_file, "r") as fp:
         hyperparameters = json.load(fp=fp)
 
-    for param in hyperparameters:
-        train_and_predict(X_train, y_train, X_test, y_test, **param)
+    if trainer["dataset"] == "Iris":
+        dataset = datasets.load_iris()
+    else if trainer["dataset"] == "Wine":
+        dataset = datasets.load_wine()
+    else:
+        raise Exception("Unknown dataset param: %s" dataset)
 
+    X = dataset.data[:, :2]
+    y = dataset.target
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.33, random_state=42)
+
+    for param in hyperparameters:
+        (gamma, C, accuracy) = train_and_predict(trainer["kernel"].lower(), X_train, y_train, X_test, y_test, **param)
+        print("GAMMA=%f, C=%f" % (gamma, C))
+        print("ACCURACY=%f\n\n" % accuracy)
 main()
