@@ -440,7 +440,7 @@ $ dhall <<< "< IsNat : Natural | IsText : Text >"
 $ dhall type <<< "
 < IsNat : Natural | IsText : Text >.IsNat
 "
-∀(IsNat : Natural) → < IsNat : Natural | IsText : Text >
+forall(IsNat : Natural) → < IsNat : Natural | IsText : Text >
 ```
 
 
@@ -448,14 +448,14 @@ $ dhall type <<< "
 
 ```bash
 $ dhall type <<< "\(x : Natural) -> x + 1"
-∀(x : Natural) → Natural
+forall(x : Natural) → Natural
 ```
 
 # Functions - Example
 
 ```bash
 $ dhall <<< "\(x : Natural) -> x + 1"
-λ(x : Natural) → x + 1
+\(x : Natural) → x + 1
 ```
 
 # Functions - Example Evaluation 1
@@ -658,7 +658,11 @@ in  { dataset : Dataset, kernel : Kernel }
 * We want a helper to create the equivalent of our set `gamma` value:
 
 ```haskell
-List/map (\(C : Double) -> { gamma = 0.1, C = C }) [ 0.1, 1, 10, 100, 1000 ]
+List/map
+  Double
+  Hyperparameters
+  (\(C : Double) -> { gamma = 0.1, C = C })
+  [ 0.1, 1, 10, 100, 1000 ]
 ```
 
 
@@ -668,12 +672,6 @@ List/map (\(C : Double) -> { gamma = 0.1, C = C }) [ 0.1, 1, 10, 100, 1000 ]
 
 ```haskell
 { gamma : Double, C : Double }
-```
-
-* We want a helper to create the equivalent of our set `gamma` value:
-
-```haskell
-List/map (\(C : Double) -> { gamma = 0.1, C = C }) [ 0.1, 1, 10, 100, 1000 ]
 ```
 
 * Ok, how about the equivalent our big copy-pasta monster?
@@ -685,16 +683,6 @@ List/map (\(C : Double) -> { gamma = 0.1, C = C }) [ 0.1, 1, 10, 100, 1000 ]
 
 ```haskell
 { gamma : Double, C : Double }
-```
-
-* We want a helper to create the equivalent of our set `gamma` value:
-
-```haskell
-List/map
-  Double
-  Hyperparameters
-  (\(C : Double) -> { gamma = 0.1, C = C })
-  [ 0.1, 1, 10, 100, 1000 ]
 ```
 
 * Ok, how about the equivalent our big copy-pasta monster?
@@ -704,7 +692,10 @@ List/liftA2
   Double
   Double
   Hyperparameters
-  (\(gamma : Double) -> \(C : Double) -> { gamma = gamma, C = C })
+  (  \(gamma : Double)
+  -> \(C : Double)
+  -> { gamma = gamma, C = C }
+  )
   [ 0.1, 1, 10, 100 ]
   [ 0.1, 1, 10, 100, 1000 ]
 ```
