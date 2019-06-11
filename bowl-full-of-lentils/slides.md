@@ -258,14 +258,12 @@ $ dhall type <<< "None Natural"
 Optional Natural
 ```
 
-# Optional - Example 1
-
 ```bash
 $ dhall type <<< "Some 1"
 Optional Natural
 ```
 
-# Optional - Example 2
+# Optional - Example 1
 
 ```bash
 $ dhall <<< '
@@ -279,7 +277,7 @@ Optional/fold
 "ABC"
 ```
 
-# Optional - Example 3
+# Optional - Example 2
 
 ```bash
 $ dhall <<< '
@@ -325,7 +323,7 @@ dhall <<< "
 { age : Natural, email : Text, name : Text }
 ```
 
-# Records - Example 1
+# Records - Example 2
 
 ```bash
 dhall type <<< '
@@ -334,7 +332,7 @@ dhall type <<< '
 { age : Natural, email : Text, name : Text }
 ```
 
-# Records - Example 1
+# Records - Example 3
 
 ```bash
 dhall <<< '
@@ -518,27 +516,199 @@ $ dhall <<< "let f = ../identity in f Natural 42"
 
 * Hyperparameter Learning
 
-# SVM - Imports
 
-```python
-import numpy as np
-from sklearn import svm, datasets
-from sklearn.model_selection import train_test_split
+# SVM - SVC Inputs
+
+* C-Support Vector Classification
+
+* `kernel`: Specifies the kernel type to be used in the algorithm. It must be one of ‘linear’, ‘poly’,
+  ‘rbf’, ‘sigmoid’, ‘precomputed’ or a callable. If none is given, ‘rbf’ will be used.
+
+* `C`: Penalty parameter C of the error term.
+
+* `gamma`: Kernel coefficient for ‘rbf’, ‘poly’ and ‘sigmoid’.
+
+* Call `fit` on `X` and `y` training data.
+
+
+# Trainer - JSON
+
+```json
+{ "kernel": "linear"
+, "dataset": "Iris"
+}
 ```
 
-# SVM - Train and Predict
 
-```python
-def train_and_predict(X_train, y_train, X_test, y_test, gamma, c, label):
-    svc = svm.SVC(kernel="rbf", gamma=gamma, C=c).fit(X_train, y_train)
+# Trainer - JSON (But wait!)
 
-    print("Training Label: %s" % label)
-    print("GAMMA=%f, C=%f" % (gamma, c))
-    predictions = svc.predict(X_test) == y_test
-    print("PREDICTION=%f\n\n" % (sum(predictions) / len(predictions)))
+```json
+{ "kernel": "rbf"
+, "dataset": "Iris"
+}
 ```
 
-# SVM - Load
+# Hyper-Parameters - JSON
+
+* We can train on the two parameters `C` and `gamma`
+
+* In JSON:
+
+```json
+{ "gamma": 0.1, "C": 0.1 }
+```
+
+* But we need more parameters:
+
+```json
+[ { "gamma": 0.1, "C": 0.1 }
+, { "gamma": 0.1, "C": 1 }
+, { "gamma": 0.1, "C": 10 }
+, { "gamma": 0.1, "C": 100 }
+, { "gamma": 0.1, "C": 1000 }
+]
+```
+
+* Now we want to increase `gamma` values as well, ohno!
+
+
+# Copy-Pasta
+
+```json
+[ { "gamma": 0.1, "C": 0.1 }
+, { "gamma": 0.1, "C": 1 }
+, { "gamma": 0.1, "C": 10 }
+, { "gamma": 0.1, "C": 100 }
+, { "gamma": 0.1, "C": 1000 }
+
+, { "gamma": 1, "C": 0.1 }
+, { "gamma": 1, "C": 1 }
+, { "gamma": 1, "C": 10 }
+, { "gamma": 1, "C": 100 }
+, { "gamma": 1, "C": 1000 }
+
+, { "gamma": 10, "C": 0.1 }
+, { "gamma": 10, "C": 1 }
+, { "gamma": 10, "C": 10 }
+, { "gamma": 10, "C": 100 }
+, { "gamma": 10, "C": 1000 }
+
+, { "gamma": 100, "C": 0.1 }
+, { "gamma": 100, "C": 1 }
+, { "gamma": 100, "C": 10 }
+, { "gamma": 100, "C": 100 }
+, { "gamma": 100, "C": 1000 }
+]
+```
+
+
+# Trainer - Dhall
+
+* `Kernel.dhall`:
+
+```haskell
+< RBF | Linear | Poly >
+```
+
+* `Dataset.dhall`:
+
+```haskell
+< Iris | Wine >
+```
+
+* `Trainer.dhall`:
+
+```haskell
+let Dataset = ./Dataset.dhall
+
+let Kernel = ./Kernel.dhall
+
+in  { dataset : Dataset, kernel : Kernel }
+```
+
+
+# Hyper-Parameters - Dhall
+
+* `Hyperparameters.dhall`:
+
+```haskell
+{ gamma : Double, C : Double }
+```
+
+
+# Hyper-Parameters - Dhall
+
+* `Hyperparameters.dhall`:
+
+```haskell
+{ gamma : Double, C : Double }
+```
+
+* We want a helper to create the equivalent of our set `gamma` value:
+
+
+# Hyper-Parameters - Dhall
+
+* `Hyperparameters.dhall`:
+
+```haskell
+{ gamma : Double, C : Double }
+```
+
+* We want a helper to create the equivalent of our set `gamma` value:
+
+```haskell
+List/map (\(C : Double) -> { gamma = 0.1, C = C }) [ 0.1, 1, 10, 100, 1000 ]
+```
+
+
+# Hyper-Parameters - Dhall
+
+* `Hyperparameters.dhall`:
+
+```haskell
+{ gamma : Double, C : Double }
+```
+
+* We want a helper to create the equivalent of our set `gamma` value:
+
+```haskell
+List/map (\(C : Double) -> { gamma = 0.1, C = C }) [ 0.1, 1, 10, 100, 1000 ]
+```
+
+* Ok, how about the equivalent our big copy-pasta monster?
+
+
+# Hyper-Parameters - Dhall
+
+* `Hyperparameters.dhall`:
+
+```haskell
+{ gamma : Double, C : Double }
+```
+
+* We want a helper to create the equivalent of our set `gamma` value:
+
+```haskell
+List/map
+  Double
+  Hyperparameters
+  (\(C : Double) -> { gamma = 0.1, C = C })
+  [ 0.1, 1, 10, 100, 1000 ]
+```
+
+* Ok, how about the equivalent our big copy-pasta monster?
+
+```haskell
+List/liftA2
+  Double
+  Double
+  Hyperparameters
+  (\(gamma : Double) -> \(C : Double) -> { gamma = gamma, C = C })
+  [ 0.1, 1, 10, 100 ]
+  [ 0.1, 1, 10, 100, 1000 ]
+```
+
 
 # More Tasty Meals
 
