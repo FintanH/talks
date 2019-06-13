@@ -3,7 +3,23 @@
 
 A quick explanation of who I am, who I work for
 
+<!-- Slide Transition -->
+# Dhall
 
+* https://dhall-lang.org/
+
+* Dhall - The non-repetitive alternative to YAML
+
+<!-- Slide Transition -->
+# Dhall
+
+* https://dhall-lang.org/
+
+* Dhall - The non-repetitive alternative to YAML
+
+* You can think of Dhall as: JSON + functions + types + imports
+
+<!-- Slide Transition -->
 # Dhall
 
 * https://dhall-lang.org/
@@ -15,6 +31,39 @@ A quick explanation of who I am, who I work for
 * Not Turing-complete
 
 
+<!-- Slide Transition -->
+# Dhall - Features
+
+* Built-in types
+
+<!-- Slide Transition -->
+# Dhall - Features
+
+* Built-in types
+
+* Records
+
+<!-- Slide Transition -->
+# Dhall - Features
+
+* Built-in types
+
+* Records
+
+* Unions
+
+<!-- Slide Transition -->
+# Dhall - Features
+
+* Built-in types
+
+* Records
+
+* Unions
+
+* Functions
+
+<!-- Slide Transition -->
 # Dhall - Features
 
 * Built-in types
@@ -27,7 +76,7 @@ A quick explanation of who I am, who I work for
 
 * Let/Imports
 
-
+<!-- Slide Transition -->
 # Bool - Type
 
 ```bash
@@ -35,12 +84,15 @@ $ dhall type <<< "True"
 Bool
 ```
 
+<!-- Slide Transition -->
 # Bool - Example 1
 
 ```bash
 $ dhall <<< "True && False"
 False
 ```
+
+<!-- Slide Transition -->
 # Bool - Example 2
 
 ```bash
@@ -48,6 +100,7 @@ $ dhall <<< "True && True"
 True
 ```
 
+<!-- Slide Transition -->
 # Bool - Example 3
 
 ```bash
@@ -55,6 +108,7 @@ $ dhall <<< "True || False"
 True
 ```
 
+<!-- Slide Transition -->
 # Bool - Example 4
 
 ```bash
@@ -62,7 +116,7 @@ $ dhall <<< "False || False"
 False
 ```
 
-
+<!-- Slide Transition -->
 # Natural - Type
 
 ```bash
@@ -70,6 +124,7 @@ $ dhall type <<< "0"
 Natural
 ```
 
+<!-- Slide Transition -->
 # Natural - Example 1
 
 ```bash
@@ -77,6 +132,7 @@ $ dhall <<< "1 + 1"
 2
 ```
 
+<!-- Slide Transition -->
 # Natural - Example 2
 
 ```bash
@@ -84,6 +140,7 @@ $ dhall <<< "1 + 0"
 1
 ```
 
+<!-- Slide Transition -->
 # Natural - Example 3
 
 ```bash
@@ -91,6 +148,7 @@ $ dhall <<< "1 * 1"
 1
 ```
 
+<!-- Slide Transition -->
 # Natural - Example 4
 
 ```bash
@@ -98,7 +156,7 @@ $ dhall <<< "1 * 0"
 0
 ```
 
-
+<!-- Slide Transition -->
 # Integer - Type
 
 ```bash
@@ -106,6 +164,7 @@ $ dhall type <<< "-1"
 Integer
 ```
 
+<!-- Slide Transition -->
 # Integer - Example 1
 
 ```bash
@@ -113,6 +172,7 @@ $ dhall <<< "-1"
 -1
 ```
 
+<!-- Slide Transition -->
 # Integer - Example 2
 
 ```bash
@@ -120,6 +180,7 @@ $ dhall <<< "+1"
 +1
 ```
 
+<!-- Slide Transition -->
 # Integer - Example 3
 
 ```bash
@@ -133,7 +194,7 @@ Error: <+> only works on <Natural>s
 (stdin):1:1
 ```
 
-
+<!-- Slide Transition -->
 # Double - Type
 
 ```bash
@@ -141,6 +202,7 @@ $ dhall type <<< "3.14"
 Double
 ```
 
+<!-- Slide Transition -->
 # Double - Example 1
 
 ```bash
@@ -148,6 +210,7 @@ $ dhall <<< "3.14"
 3.14
 ```
 
+<!-- Slide Transition -->
 # Double - Example 2
 
 ```bash
@@ -155,6 +218,7 @@ $ dhall <<< "Infinity"
 Infinity
 ```
 
+<!-- Slide Transition -->
 # Double - Example 3
 
 ```bash
@@ -162,6 +226,7 @@ $ dhall <<< "-Infinity"
 -Infinity
 ```
 
+<!-- Slide Transition -->
 # Double - Example 4
 
 ```bash
@@ -176,6 +241,7 @@ Error: <*> only works on <Natural>s
 ```
 
 
+<!-- Slide Transition -->
 # Text - Type
 
 ```bash
@@ -183,6 +249,7 @@ $ dhall type <<< '"Hello, World!"'
 Text
 ```
 
+<!-- Slide Transition -->
 # Text - Example 1
 
 ```bash
@@ -190,6 +257,7 @@ $ dhall <<< '"I <3 Dhall"'
 "I <3 Dhall"
 ```
 
+<!-- Slide Transition -->
 # Text - Example 2
 
 ```bash
@@ -197,6 +265,7 @@ $ dhall <<< '"I" ++ " <3 " ++ "NYC"'
 "I <3 NYC"
 ```
 
+<!-- Slide Transition -->
 # Text - Example 3
 
 ```bash
@@ -215,6 +284,7 @@ $ dhall
 ```
 
 
+<!-- Slide Transition -->
 # List - Type
 
 ```bash
@@ -222,6 +292,7 @@ $ dhall type <<< "[1, 2, 3]"
 List Natural
 ```
 
+<!-- Slide Transition -->
 # List - Example 1
 
 ```bash
@@ -229,6 +300,7 @@ $ dhall <<< "[1, 2, 3] # [4, 5, 6]
 [ 1, 2, 3, 4, 5, 6 ]
 ```
 
+<!-- Slide Transition -->
 # List - Example 2
 
 ```bash
@@ -243,6 +315,7 @@ List/fold
 False
 ```
 
+<!-- Slide Transition -->
 # List - Example 3
 
 ```bash
@@ -251,6 +324,7 @@ $ dhall <<< "List/length Natural [1, 2, 3]"
 ```
 
 
+<!-- Slide Transition -->
 # Optional - Type
 
 ```bash
@@ -263,6 +337,7 @@ $ dhall type <<< "Some 1"
 Optional Natural
 ```
 
+<!-- Slide Transition -->
 # Optional - Example 1
 
 ```bash
@@ -277,6 +352,7 @@ Optional/fold
 "ABC"
 ```
 
+<!-- Slide Transition -->
 # Optional - Example 2
 
 ```bash
@@ -292,6 +368,7 @@ Optional/fold
 ```
 
 
+<!-- Slide Transition -->
 # Unit
 
 ```bash
@@ -305,6 +382,7 @@ $ dhall <<< "{=}
 ```
 
 
+<!-- Slide Transition -->
 # Records - Type
 
 ```bash
@@ -314,6 +392,7 @@ dhall type <<< "
 Type
 ```
 
+<!-- Slide Transition -->
 # Records - Example 1
 
 ```bash
@@ -323,6 +402,7 @@ dhall <<< "
 { age : Natural, email : Text, name : Text }
 ```
 
+<!-- Slide Transition -->
 # Records - Example 2
 
 ```bash
@@ -332,6 +412,7 @@ dhall type <<< '
 { age : Natural, email : Text, name : Text }
 ```
 
+<!-- Slide Transition -->
 # Records - Example 3
 
 ```bash
@@ -341,6 +422,7 @@ dhall <<< '
 { age = 26, email = "finto@haps.com", name = "Fintan" }
 ```
 
+<!-- Slide Transition -->
 # Records - Example Type Annotation
 
 ```bash
@@ -356,6 +438,7 @@ Error: Expression doesn\'t match annotation
 { name = "Fintan" } : { name : Text, age : Natural }
 ```
 
+<!-- Slide Transition -->
 # Records - Example Projection 1
 
 ```bash
@@ -363,6 +446,7 @@ dhall <<< '{ name = "Fintan", age = 26 }.age'
 26
 ```
 
+<!-- Slide Transition -->
 # Records - Example Projection 2
 
 ```bash
@@ -370,6 +454,7 @@ dhall <<< '{ name = "Fintan", age = 26 }.{ age, name }'
 { age = 26, name = "Fintan" }
 ```
 
+<!-- Slide Transition -->
 # Unions - Type
 
 ```bash
@@ -384,6 +469,7 @@ $ dhall type <<< "
 Type
 ```
 
+<!-- Slide Transition -->
 # Unions - Example Enum
 
 ```bash
@@ -398,6 +484,7 @@ $ dhall <<< "
 < Friday | Monday | Thursday | Tuesday | Wednesday >
 ```
 
+<!-- Slide Transition -->
 # Unions - Example Enum Constructor
 
 ```bash
@@ -412,6 +499,7 @@ $ dhall <<< "
 <Friday | Monday | Thursday | Tuesday | Wednesday>.Monday
 ```
 
+<!-- Slide Transition -->
 # Unions - Example Eliminator
 
 ```bash
@@ -428,22 +516,26 @@ merge
 True
 ```
 
+<!-- Slide Transition -->
 # Unions - Example Sum Type
 
 ```bash
 $ dhall <<< "< IsNat : Natural | IsText : Text >"
 ```
 
+<!-- Slide Transition -->
 # Unions - Example Sum Type Constructor
 
 ```bash
 $ dhall type <<< "
 < IsNat : Natural | IsText : Text >.IsNat
 "
-forall(IsNat : Natural) → < IsNat : Natural | IsText : Text >
+  forall(IsNat : Natural)
+→ < IsNat : Natural | IsText : Text >
 ```
 
 
+<!-- Slide Transition -->
 # Functions - Type
 
 ```bash
@@ -451,6 +543,7 @@ $ dhall type <<< "\(x : Natural) -> x + 1"
 forall(x : Natural) → Natural
 ```
 
+<!-- Slide Transition -->
 # Functions - Example
 
 ```bash
@@ -458,6 +551,7 @@ $ dhall <<< "\(x : Natural) -> x + 1"
 \(x : Natural) → x + 1
 ```
 
+<!-- Slide Transition -->
 # Functions - Example Evaluation 1
 
 ```bash
@@ -465,6 +559,7 @@ $ dhall <<< "(\(x : Natural) -> x + 1) 41"
 42
 ```
 
+<!-- Slide Transition -->
 # Functions - Example Evaluation 2
 
 ```bash
@@ -480,6 +575,7 @@ $ dhall <<< '
 ```
 
 
+<!-- Slide Transition -->
 # Let/Imports - Example 1
 
 ```bash
@@ -490,6 +586,7 @@ in identity Text "It me!"
 "It me!"
 ```
 
+<!-- Slide Transition -->
 # Let/Imports - Example 2
 
 ```bash
@@ -500,6 +597,7 @@ in enumerate 10
 [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 ]
 ```
 
+<!-- Slide Transition -->
 # Let/Imports - Example 3
 
 ```bash
@@ -508,15 +606,66 @@ $ dhall <<< "let f = ../identity in f Natural 42"
 ```
 
 
+<!-- Slide Transition -->
 # Machine Learning Configuration - SVM
 
 * Support Vector Machine (SVM)
 
-* Simple Script in Python using Scikit-Learn
+
+<!-- Slide Transition -->
+# Machine Learning Configuration - SVM
+
+* Support Vector Machine (SVM)
 
 * Hyperparameter Learning
 
 
+<!-- Slide Transition -->
+# Machine Learning Configuration - SVM
+
+* Support Vector Machine (SVM)
+
+* Hyperparameter Learning
+
+* Simple Script in Python using Scikit-Learn
+
+
+<!-- Slide Transition -->
+# SVM - SVC Inputs
+
+* C-Support Vector Classification
+
+<!-- Slide Transition -->
+# SVM - SVC Inputs
+
+* C-Support Vector Classification
+
+* `kernel`: Specifies the kernel type to be used in the algorithm. It must be one of ‘linear’, ‘poly’,
+  ‘rbf’, ‘sigmoid’, ‘precomputed’ or a callable. If none is given, ‘rbf’ will be used.
+
+<!-- Slide Transition -->
+# SVM - SVC Inputs
+
+* C-Support Vector Classification
+
+* `kernel`: Specifies the kernel type to be used in the algorithm. It must be one of ‘linear’, ‘poly’,
+  ‘rbf’, ‘sigmoid’, ‘precomputed’ or a callable. If none is given, ‘rbf’ will be used.
+
+* `C`: Penalty parameter C of the error term.
+
+<!-- Slide Transition -->
+# SVM - SVC Inputs
+
+* C-Support Vector Classification
+
+* `kernel`: Specifies the kernel type to be used in the algorithm. It must be one of ‘linear’, ‘poly’,
+  ‘rbf’, ‘sigmoid’, ‘precomputed’ or a callable. If none is given, ‘rbf’ will be used.
+
+* `C`: Penalty parameter C of the error term.
+
+* `gamma`: Kernel coefficient for ‘rbf’, ‘poly’ and ‘sigmoid’.
+
+<!-- Slide Transition -->
 # SVM - SVC Inputs
 
 * C-Support Vector Classification
@@ -531,6 +680,7 @@ $ dhall <<< "let f = ../identity in f Natural 42"
 * Call `fit` on `X` and `y` training data.
 
 
+<!-- Slide Transition -->
 # Trainer - JSON
 
 ```json
@@ -539,7 +689,7 @@ $ dhall <<< "let f = ../identity in f Natural 42"
 }
 ```
 
-
+<!-- Slide Transition -->
 # Trainer - JSON (But wait!)
 
 ```json
@@ -548,6 +698,45 @@ $ dhall <<< "let f = ../identity in f Natural 42"
 }
 ```
 
+<!-- Slide Transition -->
+# Hyper-Parameters - JSON
+
+* We can train on the two parameters `C` and `gamma`
+
+<!-- Slide Transition -->
+# Hyper-Parameters - JSON
+
+* We can train on the two parameters `C` and `gamma`
+
+* In JSON:
+
+```json
+{ "gamma": 0.1, "C": 0.1 }
+```
+
+<!-- Slide Transition -->
+# Hyper-Parameters - JSON
+
+* We can train on the two parameters `C` and `gamma`
+
+* In JSON:
+
+```json
+{ "gamma": 0.1, "C": 0.1 }
+```
+
+* But we need more parameters:
+
+```json
+[ { "gamma": 0.1, "C": 0.1 }
+, { "gamma": 0.1, "C": 1 }
+, { "gamma": 0.1, "C": 10 }
+, { "gamma": 0.1, "C": 100 }
+, { "gamma": 0.1, "C": 1000 }
+]
+```
+
+<!-- Slide Transition -->
 # Hyper-Parameters - JSON
 
 * We can train on the two parameters `C` and `gamma`
@@ -571,7 +760,7 @@ $ dhall <<< "let f = ../identity in f Natural 42"
 
 * Now we want to increase `gamma` values as well, ohno!
 
-
+<!-- Slide Transition -->
 # Copy-Pasta
 
 ```json
@@ -602,6 +791,31 @@ $ dhall <<< "let f = ../identity in f Natural 42"
 ```
 
 
+<!-- Slide Transition -->
+# Trainer - Dhall
+
+* `Kernel.dhall`:
+
+```haskell
+< RBF | Linear | Poly >
+```
+
+<!-- Slide Transition -->
+# Trainer - Dhall
+
+* `Kernel.dhall`:
+
+```haskell
+< RBF | Linear | Poly >
+```
+
+* `Dataset.dhall`:
+
+```haskell
+< Iris | Wine >
+```
+
+<!-- Slide Transition -->
 # Trainer - Dhall
 
 * `Kernel.dhall`:
@@ -627,6 +841,7 @@ in  { dataset : Dataset, kernel : Kernel }
 ```
 
 
+<!-- Slide Transition -->
 # Hyper-Parameters - Dhall
 
 * `Hyperparameters.dhall`:
@@ -636,6 +851,7 @@ in  { dataset : Dataset, kernel : Kernel }
 ```
 
 
+<!-- Slide Transition -->
 # Hyper-Parameters - Dhall
 
 * `Hyperparameters.dhall`:
@@ -647,6 +863,7 @@ in  { dataset : Dataset, kernel : Kernel }
 * We want a helper to create the equivalent of our set `gamma` value:
 
 
+<!-- Slide Transition -->
 # Hyper-Parameters - Dhall
 
 * `Hyperparameters.dhall`:
@@ -666,6 +883,7 @@ List/map
 ```
 
 
+<!-- Slide Transition -->
 # Hyper-Parameters - Dhall
 
 * `Hyperparameters.dhall`:
@@ -677,6 +895,7 @@ List/map
 * Ok, how about the equivalent our big copy-pasta monster?
 
 
+<!-- Slide Transition -->
 # Hyper-Parameters - Dhall
 
 * `Hyperparameters.dhall`:
@@ -701,6 +920,7 @@ List/liftA2
 ```
 
 
+<!-- Slide Transition -->
 # More Tasty Meals
 
 * https://functional.works-hub.com/learn/bowl-full-of-lentils-fcbf3
@@ -711,6 +931,7 @@ List/liftA2
 
 * https://github.com/dhall-lang
 
+<!-- Slide Transition -->
 # Other Links
 
 * https://scikit-learn.org/stable/index.html
