@@ -1,19 +1,41 @@
 
 # It Me
 
-A quick explanation of who I am, who I work for
+![Learning about my new camera](./images/me_blur.JPG)
+
+<!-- Slide Transition -->
+# It Me
+
+* Fintan Halpenny
+
+<!-- Slide Transition -->
+# It Me
+
+* Fintan Halpenny
+
+* Frequently known as fintan or finto online
+
+<!-- Slide Transition -->
+# It Me
+
+* Fintan Halpenny
+
+* Frequently known as fintan or finto online
+
+* Work at Formation
 
 <!-- Slide Transition -->
 # Dhall
 
-* https://dhall-lang.org/
+![https://dhall-lang.org/](./images/dhall-logo.png)
+
+<!-- Slide Transition -->
+# Dhall
 
 * Dhall - The non-repetitive alternative to YAML
 
 <!-- Slide Transition -->
 # Dhall
-
-* https://dhall-lang.org/
 
 * Dhall - The non-repetitive alternative to YAML
 
@@ -21,8 +43,6 @@ A quick explanation of who I am, who I work for
 
 <!-- Slide Transition -->
 # Dhall
-
-* https://dhall-lang.org/
 
 * Dhall - The non-repetitive alternative to YAML
 
@@ -611,14 +631,12 @@ $ dhall <<< "let f = ../identity in f Natural 42"
 
 * Support Vector Machine (SVM)
 
-
 <!-- Slide Transition -->
 # Machine Learning Configuration - SVM
 
 * Support Vector Machine (SVM)
 
 * Hyperparameter Learning
-
 
 <!-- Slide Transition -->
 # Machine Learning Configuration - SVM
@@ -629,6 +647,10 @@ $ dhall <<< "let f = ../identity in f Natural 42"
 
 * Simple Script in Python using Scikit-Learn
 
+<!-- Slide Transition -->
+# Machine Learning Configuration - SVM
+
+![SVM RBF of Iris Dataset](./images/svm_rbf_iris.png)
 
 <!-- Slide Transition -->
 # SVM - SVC Inputs
@@ -937,3 +959,8 @@ List/liftA2
 * https://scikit-learn.org/stable/index.html
 
 * https://medium.com/all-things-ai/in-depth-parameter-tuning-for-svc-758215394769
+
+<!-- Slide Transition -->
+# Follow Me (But like, only if you want to)
+
+![For more blurry pics follow me on Instagram @fintohaps](./images/cool_blur.JPG)
