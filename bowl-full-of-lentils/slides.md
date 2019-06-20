@@ -108,31 +108,22 @@ Bool
 ```
 
 <!-- Slide Transition -->
-# Bool - Example 1
+# Bool - Examples
 
 ```bash
 $ dhall <<< "True && False"
 False
 ```
 
-<!-- Slide Transition -->
-# Bool - Example 2
-
 ```bash
 $ dhall <<< "True && True"
 True
 ```
 
-<!-- Slide Transition -->
-# Bool - Example 3
-
 ```bash
 $ dhall <<< "True || False"
 True
 ```
-
-<!-- Slide Transition -->
-# Bool - Example 4
 
 ```bash
 $ dhall <<< "False || False"
@@ -148,31 +139,22 @@ Natural
 ```
 
 <!-- Slide Transition -->
-# Natural - Example 1
+# Natural - Examples
 
 ```bash
 $ dhall <<< "1 + 1"
 2
 ```
 
-<!-- Slide Transition -->
-# Natural - Example 2
-
 ```bash
 $ dhall <<< "1 + 0"
 1
 ```
 
-<!-- Slide Transition -->
-# Natural - Example 3
-
 ```bash
 $ dhall <<< "1 * 1"
 1
 ```
-
-<!-- Slide Transition -->
-# Natural - Example 4
 
 ```bash
 $ dhall <<< "1 * 0"
@@ -188,23 +170,17 @@ Integer
 ```
 
 <!-- Slide Transition -->
-# Integer - Example 1
+# Integer - Examples
 
 ```bash
 $ dhall <<< "-1"
 -1
 ```
 
-<!-- Slide Transition -->
-# Integer - Example 2
-
 ```bash
 $ dhall <<< "+1"
 +1
 ```
-
-<!-- Slide Transition -->
-# Integer - Example 3
 
 ```bash
 $ dhall <<< "-1 + -2"
@@ -226,31 +202,22 @@ Double
 ```
 
 <!-- Slide Transition -->
-# Double - Example 1
+# Double - Examples
 
 ```bash
 $ dhall <<< "3.14"
 3.14
 ```
 
-<!-- Slide Transition -->
-# Double - Example 2
-
 ```bash
 $ dhall <<< "Infinity"
 Infinity
 ```
 
-<!-- Slide Transition -->
-# Double - Example 3
-
 ```bash
 $ dhall <<< "-Infinity"
 -Infinity
 ```
-
-<!-- Slide Transition -->
-# Double - Example 4
 
 ```bash
 $ dhall <<< "3.14 * (3.0 * 3.0)"
@@ -273,23 +240,17 @@ Text
 ```
 
 <!-- Slide Transition -->
-# Text - Example 1
+# Text - Examples
 
 ```bash
 $ dhall <<< '"I <3 Dhall"'
 "I <3 Dhall"
 ```
 
-<!-- Slide Transition -->
-# Text - Example 2
-
 ```bash
 $ dhall <<< '"I" ++ " <3 " ++ "NYC"'
 "I <3 NYC"
 ```
-
-<!-- Slide Transition -->
-# Text - Example 3
 
 ```bash
 $ dhall
@@ -316,15 +277,12 @@ List Natural
 ```
 
 <!-- Slide Transition -->
-# List - Example 1
+# List - Examples
 
 ```bash
 $ dhall <<< "[1, 2, 3] # [4, 5, 6]"
 [ 1, 2, 3, 4, 5, 6 ]
 ```
-
-<!-- Slide Transition -->
-# List - Example 2
 
 ```bash
 $ dhall <<< "
@@ -337,9 +295,6 @@ List/fold
 "
 False
 ```
-
-<!-- Slide Transition -->
-# List - Example 3
 
 ```bash
 $ dhall <<< "List/length Natural [1, 2, 3]"
@@ -361,7 +316,7 @@ Optional Natural
 ```
 
 <!-- Slide Transition -->
-# Optional - Example 1
+# Optional - Fold
 
 ```bash
 $ dhall <<< '
@@ -375,9 +330,7 @@ Optional/fold
 "ABC"
 ```
 
-<!-- Slide Transition -->
-# Optional - Example 2
-
+# Optional - Fold
 ```bash
 $ dhall <<< '
 Optional/fold
@@ -416,7 +369,7 @@ Type
 ```
 
 <!-- Slide Transition -->
-# Records - Example 1
+# Records - Person
 
 ```bash
 dhall <<< "
@@ -426,23 +379,23 @@ dhall <<< "
 ```
 
 <!-- Slide Transition -->
-# Records - Example 2
-
-```bash
-dhall type <<< '
-{ name = "Fintan", age = 26, email = "finto@haps.com" }
-'
-{ age : Natural, email : Text, name : Text }
-```
-
-<!-- Slide Transition -->
-# Records - Example 3
+# Records - Person Creation
 
 ```bash
 dhall <<< '
 { name = "Fintan", age = 26, email = "finto@haps.com" }
 '
 { age = 26, email = "finto@haps.com", name = "Fintan" }
+```
+
+<!-- Slide Transition -->
+# Records - Person Type
+
+```bash
+dhall type <<< '
+{ name = "Fintan", age = 26, email = "finto@haps.com" }
+'
+{ age : Natural, email : Text, name : Text }
 ```
 
 <!-- Slide Transition -->
@@ -468,9 +421,6 @@ Error: Expression doesn\'t match annotation
 dhall <<< '{ name = "Fintan", age = 26 }.age'
 26
 ```
-
-<!-- Slide Transition -->
-# Records - Example Projection 2
 
 ```bash
 dhall <<< '{ name = "Fintan", age = 26 }.{ age, name }'
@@ -544,10 +494,8 @@ True
 
 ```bash
 $ dhall <<< "< IsNat : Natural | IsText : Text >"
+< IsNat : Natural | IsText : Text >
 ```
-
-<!-- Slide Transition -->
-# Unions - Example Sum Type Constructor
 
 ```bash
 $ dhall type <<< "
@@ -556,7 +504,6 @@ $ dhall type <<< "
   forall(IsNat : Natural)
 → < IsNat : Natural | IsText : Text >
 ```
-
 
 <!-- Slide Transition -->
 # Functions - Type
@@ -574,16 +521,13 @@ $ dhall <<< "\(x : Natural) -> x + 1"
 \(x : Natural) → x + 1
 ```
 
-<!-- Slide Transition -->
-# Functions - Example Evaluation 1
-
 ```bash
 $ dhall <<< "(\(x : Natural) -> x + 1) 41"
 42
 ```
 
 <!-- Slide Transition -->
-# Functions - Example Evaluation 2
+# Functions - Example Const
 
 ```bash
 $ dhall <<< '
@@ -599,7 +543,7 @@ $ dhall <<< '
 
 
 <!-- Slide Transition -->
-# Let/Imports - Example 1
+# Let/Imports - Examples
 
 ```bash
 $ dhall <<< '
@@ -609,9 +553,6 @@ in identity Text "It me!"
 "It me!"
 ```
 
-<!-- Slide Transition -->
-# Let/Imports - Example 2
-
 ```bash
 $ dhall <<< "
 let enumerate = https://dhall/Prelude/Natural/enumerate
@@ -619,9 +560,6 @@ in enumerate 10
 "
 [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 ]
 ```
-
-<!-- Slide Transition -->
-# Let/Imports - Example 3
 
 ```bash
 $ dhall <<< "let f = ../identity in f Natural 42"
