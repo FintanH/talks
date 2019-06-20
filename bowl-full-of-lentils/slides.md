@@ -1,3 +1,6 @@
+% Bowl Full of Lentils
+% Fintan Halpenny
+% June 24, 2019
 
 # It Me
 
@@ -316,7 +319,7 @@ List Natural
 # List - Example 1
 
 ```bash
-$ dhall <<< "[1, 2, 3] # [4, 5, 6]
+$ dhall <<< "[1, 2, 3] # [4, 5, 6]"
 [ 1, 2, 3, 4, 5, 6 ]
 ```
 
@@ -397,7 +400,7 @@ $ dhall type <<< "{=}"
 ```
 
 ```bash
-$ dhall <<< "{=}
+$ dhall <<< "{=}"
 {=}
 ```
 
