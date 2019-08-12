@@ -65,6 +65,6 @@
 
 * Open up `src/Course/List.hs`
 
-* `stack --fast --file-watch --ta "--match=Course.List/"`
+* `stack test --fast --file-watch --ta "--match=Course.List/"`
 
 * Edit and Save!
